@@ -51,7 +51,7 @@ CREATE TABLE `users` (
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role`) REFERENCES `roles` (`level`)
 );
 
---INSERT INTO `users` VALUES (1,'1@2.3','$2a$10$FKozujcHmWdulk6naR/XveW3x46hWPnRY2S/cyI/XhmjZZEOwz.bW','Markus','Red','1979-10-12','2019-02-12 16:56:05',10,NULL,NULL,0);
+INSERT INTO `users` VALUES (1,'1@2.3','$2a$10$FKozujcHmWdulk6naR/XveW3x46hWPnRY2S/cyI/XhmjZZEOwz.bW','Markus','Red','1979-10-12','2019-02-12 16:56:05',10,NULL,NULL,0);
 
 CREATE TABLE `origin_sites` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,

@@ -25,6 +25,7 @@ public class RolesRepositoryTest {
 	RolesRepository xxx ;
 	
 	@Before
+	@After
 	public void beforeTest() {
 		logger.info("beforeTest - START");
 		try {
@@ -42,28 +43,7 @@ public class RolesRepositoryTest {
 
 		}
 
-	}
-
-	@After
-	public void afterTest() {
-
-		try {
-//			ItconsultantsRepository aaa = new ItconsultantsRepository();
-//			aaa.deleteAll();
-			SurveyRepliesRepository bbb = new SurveyRepliesRepository();
-			bbb.deleteAll();
-			UserRepository yyy = new UserRepository();
-			yyy.deleteAll();
-			xxx.deleteAll();
-
-		} catch (Exception e) {
-
-			e.getStackTrace();
-			logger.error("Error: " + e, e);
-
-		}
-
-	}
+	}	
 
 	@Test
 	public void testInsert() {
