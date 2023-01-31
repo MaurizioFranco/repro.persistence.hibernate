@@ -2,28 +2,22 @@ package centauri.academy.proxima.cerepro.repository;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import centauri.academy.proxima.cerepro.entity.EntityInterface;
 import centauri.academy.proxima.cerepro.entity.User;
+import centauri.academy.proxima.cerepro.util.HibernateUtil;
 
 public class UserRepository implements RepositoryInterface {
-//	private SessionFactory session_factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 
-	Logger logger = LoggerFactory.getLogger("UserRepository");
+	private final static Logger logger = LoggerFactory.getLogger(UserRepository.class);
+	
+	private static final int ROLE_ADMIN_NUMBER = 0;
 
 	public User getEntityForTest(int roleLevel) {
 		return getEntityForTest(roleLevel, "email2@email.com");
@@ -74,36 +68,24 @@ public class UserRepository implements RepositoryInterface {
 		return null;
 	}
 
-	public  EntityInterface findByEmail(String email) {
+	public User findByEmail(String email) {
 		logger.info("findByEmail - START - with email: " + email);
 		Session session = sessionFactory.openSession();
-		Transaction trx = null;
-		EntityInterface entity = null;
+		User entity = null;
 		try {
-			// creating transaction object
-			String hql = "SELECT obj FROM User obj WHERE email = '" + email + "'";
-			Query<EntityInterface> query = session.createQuery(hql);
-			List results = query.list(); 
+			String hql = "SELECT obj FROM " + User.class.getSimpleName() + " obj WHERE email = '" + email + "'";
+			Query<User> query = session.createQuery(hql);
+			List<User> results = query.list(); 
 			logger.info("findByEmail - DEBUG - results.size(): " + results.size());
 			if(results.size() > 0) {
-				entity = (EntityInterface) results.get(0);
+				entity = results.get(0);
 			} else {
 				entity = null;
 			}
-//			Long id = (Long)results.get(0);
-//			logger.info("findByEmail - DEBUG - id: " + id.longValue());
-//			trx = session.beginTransaction();
-//			entity = (EntityInterface) session.find(User.class, id);// search by specific class and id
 			logger.info("findByEmail - DEBUG - entity: " + entity);
-//			trx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = null;
-//			try {
-//				trx.rollback();
-//			} catch (Exception ex) {
-//				e.printStackTrace();
-//			}
 			logger.error("Error: " + e, e);
 		} finally {
 			try {
@@ -114,6 +96,30 @@ public class UserRepository implements RepositoryInterface {
 			}
 		}
 		return entity;
+	}
+	
+	public List<User> findByRole() {
+		logger.info("findByRole - START - with role: " + ROLE_ADMIN_NUMBER);
+		Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
+		List<User> entityList = null;
+		try {
+			String hql = "SELECT obj FROM " + User.class.getSimpleName() + " obj WHERE role = '" + ROLE_ADMIN_NUMBER + "'";
+			Query<User> query = session.createQuery(hql);
+			entityList = query.list();
+			logger.info("findByRole - DEBUG - results.size(): " + entityList.size());
+		} catch (Exception e) {
+			e.printStackTrace();
+			entityList = null;
+			logger.error("Error: " + e, e);
+		} finally {
+			try {
+				session.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				logger.error("Error: " + e, e);
+			}
+		}
+		return entityList;
 	}
 
 
