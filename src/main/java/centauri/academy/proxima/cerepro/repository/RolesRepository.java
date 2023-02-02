@@ -24,7 +24,7 @@ public class RolesRepository implements RepositoryInterface {
 		logger.info("getEntityForTest - START");
 		Roles role = new Roles();
 		role.setLabel("label test");
-		role.setLevel(2);// TODO ---> generate a random int
+		role.setLevel((int)Math.random());
 		role.setDescription("description test");
 		logger.info("getEntityForTest - DEBUG - role: " + role.toString());
 		return role;
@@ -54,7 +54,5 @@ public class RolesRepository implements RepositoryInterface {
 		logger.info("deleteAll - START");
 		return deleteAll(Roles.class);
 	}
-
-	
 
 }
