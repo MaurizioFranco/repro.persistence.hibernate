@@ -30,7 +30,7 @@ public interface RepositoryInterface {
 	/**
 	 * Insert a new Entity in the table
 	 * @param entity
-	 * @return
+	 * @return id of inserted item
 	 */
 	public default Long create(EntityInterface entity) {
 		logger.info("insert - START");
