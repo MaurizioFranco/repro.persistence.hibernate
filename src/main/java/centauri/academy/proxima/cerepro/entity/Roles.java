@@ -14,6 +14,8 @@ import javax.persistence.Table;
 @Table( name = "roles" )
 public class Roles implements EntityInterface {	
 	
+	public static final int GUEST = 100 ;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id ;
