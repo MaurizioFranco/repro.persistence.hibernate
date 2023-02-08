@@ -1,7 +1,5 @@
 package centauri.academy.proxima.cerepro.repository;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -16,20 +14,24 @@ public class CandidatesRepository implements RepositoryInterface{
 
 	@Override
 	public Candidates findById(long id) {
+		logger.info("findById - START - id: " + id);
 		return (Candidates) findById(id, Candidates.class);
 	}
 
 	public boolean delete(long id) {
+		logger.info("delete - START - id: " + id);
 		return delete(Candidates.class, id);
 	}
 	
 	@Override
 	public List<EntityInterface> findAll() {
+		logger.info("findAll - START");
 		return findAll(Candidates.class);
 	}
 	
 	@Override
 	public int deleteAll() {
+		logger.info("deleteAll - START");
 		return deleteAll(Candidates.class);
 	}
 	
