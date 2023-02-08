@@ -40,8 +40,8 @@ public class Candidates implements Serializable, EntityInterface{
 	@Column(name="high_graduate")
 	private Long high_graduate;
 	
-	@Column(name="still_high_graduate")
-	private Long still_high_graduate;
+	@Column(name="still_high_study")
+	private Long still_high_study;
 
 	@Column(name="mobile")
 	private String mobile;
@@ -66,7 +66,7 @@ public class Candidates implements Serializable, EntityInterface{
 	}
 
 	public Candidates(Long id, Long user_id, String domicile_city, String study_qualification, Long graduate,
-			Long high_graduate, Long still_high_graduate, String mobile, String cv_external_path, String course_code,
+			Long high_graduate, Long still_high_study, String mobile, String cv_external_path, String course_code,
 			Timestamp candidacy_date_time, Long candidate_states_id) {
 		super();
 		this.id = id;
@@ -75,7 +75,7 @@ public class Candidates implements Serializable, EntityInterface{
 		this.study_qualification = study_qualification;
 		this.graduate = graduate;
 		this.high_graduate = high_graduate;
-		this.still_high_graduate = still_high_graduate;
+		this.still_high_study = still_high_study;
 		this.mobile = mobile;
 		this.cv_external_path = cv_external_path;
 		this.course_code = course_code;
@@ -168,17 +168,17 @@ public class Candidates implements Serializable, EntityInterface{
 	}
 
 	/**
-	 * @return the still_high_graduate
+	 * @return the still_high_study
 	 */
 	public Long getStill_high_graduate() {
-		return still_high_graduate;
+		return still_high_study;
 	}
 
 	/**
-	 * @param still_high_graduate the still_high_graduate to set
+	 * @param still_high_study the still_high_study to set
 	 */
-	public void setStill_high_graduate(Long still_high_graduate) {
-		this.still_high_graduate = still_high_graduate;
+	public void setStill_high_graduate(Long still_high_study) {
+		this.still_high_study = still_high_study;
 	}
 
 	/**
@@ -255,7 +255,7 @@ public class Candidates implements Serializable, EntityInterface{
 	public String toString() {
 		return "Candidates [id=" + id + ", user_id=" + user_id + ", domicile_city=" + domicile_city
 				+ ", study_qualification=" + study_qualification + ", graduate=" + graduate + ", high_graduate="
-				+ high_graduate + ", still_high_graduate=" + still_high_graduate + ", mobile=" + mobile
+				+ high_graduate + ", still_high_study=" + still_high_study + ", mobile=" + mobile
 				+ ", cv_external_path=" + cv_external_path + ", course_code=" + course_code + ", candidacy_date_time="
 				+ candidacy_date_time + ", candidate_states_id=" + candidate_states_id + "]";
 	}
